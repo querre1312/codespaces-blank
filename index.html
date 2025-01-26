@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receta Médica</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Verificación de Receta</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Receta Médica</h1>
-        <div id="receta-info">
-            <p>Escanea el código QR para ver la receta.</p>
-        </div>
+    <h1>Verificación de Receta</h1>
+    <div id="info">
+        <p>Cargando datos...</p>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Función para obtener parámetros de la URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param) || "No disponible";
+        }
+
+        // Obtener datos
+        const nombre = getQueryParam('nombre');
+        const dni = getQueryParam('dni');
+        const receta = getQueryParam('receta');
+
+        // Mostrar los datos en la página
+        document.getElementById('info').innerHTML = `
+            <p><strong>Paciente:</strong> ${nombre}</p>
+            <p><strong>DNI:</strong> ${dni}</p>
+            <p><strong>Número de Receta:</strong> ${receta}</p>
+        `;
+    </script>
 </body>
 </html>
